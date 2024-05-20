@@ -1,5 +1,6 @@
 package bookingSystem.hotelservice.hotelservice.services.hotelService;
 
+import bookingSystem.hotelservice.hotelservice.entities.Hotel;
 import bookingSystem.hotelservice.hotelservice.entities.Room;
 import bookingSystem.hotelservice.hotelservice.repositories.RoomRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,15 @@ public class RoomService implements IRoomService {
     public Room save(Room room) {
         return roomRepository.save(room);
     }
-
+    public Room updateRoom(Long id, Room roomDetails) {
+        return roomRepository.findById(id).map(hotel -> {
+            hotel.setNum_room(roomDetails.getNum_room());
+            hotel.setDescription(roomDetails.getDescription());
+            hotel.setCapacity(roomDetails.getCapacity());
+            hotel.setEquipments(roomDetails.getEquipments());
+            return roomRepository.save(hotel);
+        }).orElse(null);
+    }
     public void deleteById(Long id) {
         roomRepository.deleteById(id);
     }

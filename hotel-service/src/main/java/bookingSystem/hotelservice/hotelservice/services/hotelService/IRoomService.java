@@ -1,5 +1,6 @@
 package bookingSystem.hotelservice.hotelservice.services.hotelService;
 
+import bookingSystem.hotelservice.hotelservice.entities.Hotel;
 import bookingSystem.hotelservice.hotelservice.entities.Room;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface IRoomService {
     Optional<Room> findById(Long id);
     Room save(Room room);
     void deleteById(Long id);
+    Room updateRoom(Long id, Room roomDetails);
 }

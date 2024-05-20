@@ -27,4 +27,19 @@ public class RoomController {
         Room savedRoom = roomService.save(room);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRoom);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Room> updateRoom(@PathVariable Long id, @RequestBody Room roomDetails) {
+        Room updateRoom = roomService.updateRoom(id, roomDetails);
+        if (updateRoom != null) {
+            return ResponseEntity.ok(updateRoom);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRoom(@PathVariable Long id) {
+        roomService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
