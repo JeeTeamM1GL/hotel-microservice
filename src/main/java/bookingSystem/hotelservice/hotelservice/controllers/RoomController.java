@@ -1,6 +1,7 @@
 package bookingSystem.hotelservice.hotelservice.controllers;
 
 
+import bookingSystem.hotelservice.hotelservice.dto.RoomDto;
 import bookingSystem.hotelservice.hotelservice.entities.Hotel;
 import bookingSystem.hotelservice.hotelservice.entities.Room;
 import bookingSystem.hotelservice.hotelservice.services.hotelService.IRoomService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/rooms")
+@RequestMapping("/api/v1/rooms")
 public class RoomController {
     private IRoomService roomService;
 
@@ -23,8 +24,8 @@ public class RoomController {
     }
 
     @PostMapping
-    public ResponseEntity<Room> createRoom(@RequestBody Room room) {
-        Room savedRoom = roomService.save(room);
+    public ResponseEntity<Room> createRoom(@RequestBody RoomDto roomDto) {
+        Room savedRoom = roomService.save(roomDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRoom);
     }
     @PutMapping("/{id}")
@@ -38,8 +39,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRoom(@PathVariable String id) {
-        roomService.deleteById(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Boolean> deleteRoom(@PathVariable String id) {
+        return ResponseEntity.ok(roomService.deleteById(id));
     }
 }

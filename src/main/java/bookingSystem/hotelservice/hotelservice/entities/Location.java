@@ -1,12 +1,14 @@
 package bookingSystem.hotelservice.hotelservice.entities;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Location implements Serializable {
     private String address;
     private String country;

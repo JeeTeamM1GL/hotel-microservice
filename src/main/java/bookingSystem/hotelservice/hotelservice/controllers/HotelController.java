@@ -1,5 +1,6 @@
 package bookingSystem.hotelservice.hotelservice.controllers;
 
+import bookingSystem.hotelservice.hotelservice.dto.HotelDto;
 import bookingSystem.hotelservice.hotelservice.entities.Hotel;
 import bookingSystem.hotelservice.hotelservice.services.hotelService.IHotelService;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -19,9 +21,15 @@ public class HotelController {
     public ResponseEntity< List<Hotel>> getAllHotels() {
         return ResponseEntity.ok(hotelService.findAll());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Hotel>> findHotelById(@PathVariable String id) {
+        return ResponseEntity.ok(hotelService.findById(id));
+    }
+
     @PostMapping
-    public ResponseEntity<Hotel> createRoom(@RequestBody Hotel hotel) {
-        Hotel savedHotel = hotelService.save(hotel);
+    public ResponseEntity<Hotel> createRoom(@RequestBody HotelDto hotelDto) {
+        Hotel savedHotel = hotelService.save(hotelDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedHotel);
     }
 
@@ -36,9 +44,8 @@ public class HotelController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteHotel(@PathVariable String id) {
-        hotelService.deleteById(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Boolean> deleteHotel(@PathVariable String id) {
+        return ResponseEntity.ok(hotelService.deleteById(id));
     }
 
 }

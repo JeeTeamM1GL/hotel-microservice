@@ -1,5 +1,6 @@
 package bookingSystem.hotelservice.hotelservice.entities;
 
+import bookingSystem.hotelservice.hotelservice.clients.User;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
@@ -16,12 +17,14 @@ import java.time.Instant;
 
 public class Commentaire implements Serializable {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String text;
     private Instant createdAt;
     private Instant updatedAt;
-    @ManyToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+    private String hotelId;
+    private String userId;
+    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "hotel_id")
+//    private Hotel hotel;
 }

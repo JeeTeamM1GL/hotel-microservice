@@ -18,16 +18,15 @@ import lombok.*;
 
 public class Room implements Serializable {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column(unique = true)
     private String num_room;
     @Enumerated(EnumType.STRING)
     private RoomType room_type;
-    private String price_per_night;
+    private double price_per_night;
     private String capacity;
     private String description;
-    private String is_available;
+    private boolean is_available;
     @ElementCollection
     private List<String> images;
     private int etage;
@@ -36,7 +35,8 @@ public class Room implements Serializable {
     private Double surface;
     private Instant createdAt;
     private Instant updatedAt;
-    @ManyToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+    private String hotelId;
+//    @ManyToOne
+//    @JoinColumn(name = "hotel_id")
+//    private Hotel hotel;
 }

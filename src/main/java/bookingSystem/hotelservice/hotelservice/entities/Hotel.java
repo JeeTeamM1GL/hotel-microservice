@@ -17,8 +17,8 @@ import lombok.*;
 @Table(name = "hotels")
 public class Hotel implements Serializable {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
+    @Column(nullable = false, unique = true)
     private String name;
     private Location location;
     private int rooms_count;
@@ -29,8 +29,8 @@ public class Hotel implements Serializable {
     private String gps_coordinate;
     private Instant createdAt;
     private Instant updatedAt;
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Room> rooms;
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Commentaire> commentaires;
+//    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Room> rooms;
+//    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Commentaire> commentaires;
 }
