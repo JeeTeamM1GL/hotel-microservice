@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -21,6 +22,11 @@ public class RoomController {
     @GetMapping
     public ResponseEntity<List<Room>> getAllRooms() {
         return ResponseEntity.ok(roomService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Room>> getRoomById(@PathVariable String id) {
+        return ResponseEntity.ok(roomService.findById(id));
     }
 
     @PostMapping
