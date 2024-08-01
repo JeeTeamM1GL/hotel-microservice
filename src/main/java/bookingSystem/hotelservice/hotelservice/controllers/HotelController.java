@@ -15,8 +15,11 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/hotels")
+@CrossOrigin(origins = "http://localhost:4200")
 public class HotelController {
     private IHotelService hotelService;
+
+    //@CrossOrigin("*")
     @GetMapping
     public ResponseEntity< List<Hotel>> getAllHotels() {
         return ResponseEntity.ok(hotelService.findAll());
@@ -28,7 +31,7 @@ public class HotelController {
     }
 
     @PostMapping
-    public ResponseEntity<Hotel> createRoom(@RequestBody HotelDto hotelDto) {
+    public ResponseEntity<Hotel> createHotel(@RequestBody HotelDto hotelDto) {
         Hotel savedHotel = hotelService.save(hotelDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedHotel);
     }
