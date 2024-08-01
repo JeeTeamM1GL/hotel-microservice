@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface IRoomService {
     List<Room> findAll();
+    List<Room> findRoomsByHotelId(String hotelId);
     Optional<Room> findById(String id);
     Room save(RoomDto roomDto);
     boolean deleteById(String id);

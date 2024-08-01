@@ -22,11 +22,31 @@ spring:
     config:
       enabled: false
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+          issuer-uri: http://localhost:8080/realms/booking-realm
+
 eureka:
   instance:
     prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+jwt:
+  auth:
+    converter:
+      resource-id: booking-client
+      principle-attribute: preferred_username
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
 server:
   port: 8082

@@ -15,7 +15,8 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/hotels")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 public class HotelController {
     private IHotelService hotelService;
 
@@ -23,6 +24,16 @@ public class HotelController {
     @GetMapping
     public ResponseEntity< List<Hotel>> getAllHotels() {
         return ResponseEntity.ok(hotelService.findAll());
+    }
+
+    @GetMapping("/public")
+    public ResponseEntity< List<Hotel>> getAllHotelsForPublic() {
+        return ResponseEntity.ok(hotelService.findAll());
+    }
+
+    @GetMapping("/public/{id}")
+    public ResponseEntity<Optional<Hotel>> findHotelByIdForPublic(@PathVariable String id) {
+        return ResponseEntity.ok(hotelService.findById(id));
     }
 
     @GetMapping("/{id}")

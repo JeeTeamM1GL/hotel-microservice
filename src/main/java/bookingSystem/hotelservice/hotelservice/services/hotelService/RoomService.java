@@ -25,6 +25,10 @@ public class RoomService implements IRoomService {
         return roomRepository.findAll();
     }
 
+    public List<Room> findRoomsByHotelId(String hotelId) {
+        return roomRepository.findRoomsByHotelId(hotelId);
+    }
+
     public Optional<Room> findById(String id) {
         return roomRepository.findById(id);
     }

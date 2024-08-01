@@ -16,11 +16,12 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/commentaires")
+@CrossOrigin("*")
 public class CommentaireController {
     private ICommentaireService commentaireService;
 
-    @PostMapping
-    public ResponseEntity<Commentaire> createCommentaire(@RequestBody CommentaireDto commentaireDto) {
+    @PostMapping("/public")
+    public ResponseEntity<Commentaire> createCommentaireForPublic(@RequestBody CommentaireDto commentaireDto) {
         Commentaire savedCommentaire = commentaireService.save(commentaireDto);
         return ResponseEntity.ok(savedCommentaire);
     }
@@ -31,8 +32,8 @@ public class CommentaireController {
 //        return ResponseEntity.ok(commentaires);
 //    }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Commentaire>> getCommentairesByHotel(@PathVariable String id) {
+    @GetMapping("/public/{id}")
+    public ResponseEntity<List<Commentaire>> getCommentairesByHotelForPublic(@PathVariable String id) {
         List<Commentaire> commentaires = commentaireService.findByHotelId(id);
         return ResponseEntity.ok(commentaires);
     }
@@ -57,8 +58,10 @@ public class CommentaireController {
 //        }
 //    }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteCommentaire(@PathVariable String id) {
+    @DeleteMapping("/public/{id}")
+    public ResponseEntity<Boolean> deleteCommentaireForPublic(@PathVariable String id) {
         return ResponseEntity.ok(commentaireService.deleteById(id));
     }
+
+
 }
