@@ -16,6 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("/api/v1/hotels")
 //@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 @CrossOrigin("*")
 public class HotelController {
     private IHotelService hotelService;

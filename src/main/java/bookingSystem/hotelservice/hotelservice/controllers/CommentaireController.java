@@ -16,7 +16,8 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/commentaires")
-@CrossOrigin("*")
+//@CrossOrigin("*")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 public class CommentaireController {
     private ICommentaireService commentaireService;
 

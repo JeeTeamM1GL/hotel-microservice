@@ -35,6 +35,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/v1/rooms/public/**").permitAll()
                                 .requestMatchers("/api/v1/commentaires/public/**").permitAll()
                                 .requestMatchers("/eureka/**").permitAll()
+                                .requestMatchers("/swagger/**").permitAll()
                                 .anyRequest().authenticated()
                         //.hasRole(ADMIN)
                 )
