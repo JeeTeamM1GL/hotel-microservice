@@ -23,6 +23,7 @@ public class Hotel implements Serializable {
     private Location location;
     private int rooms_count;
     private String description;
+    @Column(length = 2048)
     private String cover;
     @ElementCollection
     private List<String> images;
